@@ -5,9 +5,15 @@ const searchFood = async () => {
 
     const url = `https://www.themealdb.com/api/json/v1/1/search.php?s=${inputText}`
 
-    const res = await fetch(url);
-    const data = await res.json();
-    displayFood(data.meals)
+    try {
+        const res = await fetch(url);
+        const data = await res.json();
+        displayFood(data.meals)
+    }
+    catch (error) {
+        console.log(error);
+    }
+
 
     /* fetch(url)
         .then(res => res.json())

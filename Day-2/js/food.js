@@ -7,8 +7,9 @@ const searchFood = () => {
     fetch(url)
         .then(res => res.json())
         .then(data => displayFood(data.meals))
+        .catch(error => console.log(error))
 }
-searchFood()
+// searchFood()
 
 const displayFood = (foods) => {
     const container = document.getElementById('food-container');
