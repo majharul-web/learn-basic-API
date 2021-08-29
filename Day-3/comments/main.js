@@ -1,4 +1,7 @@
 const loadData = async () => {
+  // spinner on
+  document.getElementById('spinner').classList.remove('d-none');
+
   const url = `https://jsonplaceholder.typicode.com/comments`;
   /* fetch(url)
     .then((res) => res.json())
@@ -8,8 +11,9 @@ const loadData = async () => {
   const res = await fetch(url);
   const data = await res.json();
   displayData(data);
+  // spinner of
+  document.getElementById('spinner').classList.add('d-none');
 };
-loadData();
 
 // displayData
 const displayData = (data) => {
@@ -31,6 +35,7 @@ const displayData = (data) => {
 
     <button onclick="setDetails('${id}')" class="btn btn-danger">Details</button>
     </div>
+    
        
     `;
     commentDiv.appendChild(div);
@@ -74,9 +79,4 @@ const showDetails = (data) => {
 // hide data
 const hideData = () => {
   document.getElementById('single-comment').textContent = '';
-};
-
-// hide all comment
-const hideAllData = () => {
-  document.getElementById('main').textContent = '';
 };
