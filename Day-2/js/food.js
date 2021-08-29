@@ -1,25 +1,25 @@
 const searchFood = () => {
-    const inputField = document.getElementById('input-field');
-    const inputText = inputField.value;
-    inputField.value = '';
+  const inputField = document.getElementById('input-field');
+  const inputText = inputField.value;
+  inputField.value = '';
 
-    const url = `https://www.themealdb.com/api/json/v1/1/search.php?s=${inputText}`
-    fetch(url)
-        .then(res => res.json())
-        .then(data => displayFood(data.meals))
-        .catch(error => console.log(error))
+  const url = `https://www.themealdb.com/api/json/v1/1/search.php?s=${inputText}`
+  fetch(url)
+    .then(res => res.json())
+    .then(data => displayFood(data.meals))
+    .catch(error => console.log(error))
 }
 // searchFood()
 
 const displayFood = (foods) => {
-    const container = document.getElementById('food-container');
-    container.textContent = '';
-    foods.forEach(food => {
+  const container = document.getElementById('food-container');
+  container.textContent = '';
+  foods.forEach(food => {
 
-        const div = document.createElement('div');
-        div.classList.add('col')
-        div.innerHTML = `
-        <div onclick="foodDetails(${food.idMeal})" class="card">
+    const div = document.createElement('div');
+    div.classList.add('col')
+    div.innerHTML = `
+        <div onclick="foodDetails(${food.idMeal} )" class="card">
           <img src="${food.strMealThumb}" class="card-img-top" alt="..." />
           <div class="card-body">
             <h5 class="card-title">${food.strMeal}</h5>
@@ -29,26 +29,26 @@ const displayFood = (foods) => {
           </div>
         </div>
         `;
-        container.appendChild(div)
-    })
+    container.appendChild(div)
+  })
 }
 
 const foodDetails = (foodId) => {
-    const url = `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${foodId}`
-    fetch(url)
-        .then(res => res.json())
-        .then(data => showFoodDetails(data.meals[0]))
+  const url = `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${foodId}`
+  fetch(url)
+    .then(res => res.json())
+    .then(data => showFoodDetails(data.meals[0]))
 
 }
 
 const showFoodDetails = food => {
-    const containerDetails = document.getElementById('details');
-    const div = document.createElement('div');
-    div.classList.add('card');
-    containerDetails.textContent = '';
+  const containerDetails = document.getElementById('details');
+  const div = document.createElement('div');
+  div.classList.add('card');
+  containerDetails.textContent = '';
 
-    div.innerHTML =
-        `
+  div.innerHTML =
+    `
         <img src="${food.strMealThumb}" class="card-img-top" alt="...">
         <div class="card-body">
           <h5 class="card-title">${food.strMeal}</h5>
@@ -57,6 +57,6 @@ const showFoodDetails = food => {
         </div>
 
         `;
-    containerDetails.appendChild(div)
-    console.log(food)
+  containerDetails.appendChild(div)
+  console.log(food)
 }
